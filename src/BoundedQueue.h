@@ -11,6 +11,7 @@ public:
         producer.Resume(); 
         consumer.Pause();
     };
+    void enqueue(const T& item) { };
 };
 
 #endif
