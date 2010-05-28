@@ -16,7 +16,10 @@ public:
     void enqueue(const T& item) 
     { 
         q.push(item);
-        consumer.Resume();
+        if (q.size() == 1) 
+        {
+            consumer.Resume();
+        }
     };
 
     const T& dequeue() 
