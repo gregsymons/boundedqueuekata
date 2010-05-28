@@ -44,3 +44,10 @@ TEST_F(BoundedQueueTest, FirstInFirstOut)
     ASSERT_EQ(2, q.dequeue());
 }
 
+TEST_F(BoundedQueueTest, EnqueueResumesConsumerOnFirstItemOnly)
+{
+    EXPECT_CALL(consumer, Resume()).Times(1);
+    q.enqueue(5);
+    q.enqueue(5);
+}
+
