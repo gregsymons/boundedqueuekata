@@ -41,5 +41,6 @@ TEST_F(BoundedQueueTest, FirstInFirstOut)
     q.enqueue(2);
 
     ASSERT_EQ(1, q.dequeue());
+    ASSERT_EQ(2, q.dequeue());
 }
 
