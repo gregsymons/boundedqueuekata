@@ -9,6 +9,7 @@ public:
     BoundedQueue(QueueControl& producer, QueueControl& consumer) 
     { 
         producer.Resume(); 
+        consumer.Pause();
     };
 };
 
