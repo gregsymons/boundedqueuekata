@@ -1,0 +1,3 @@
+This is an implementation of the BoundedQueueKata from
+http://wiki.xputah.org/BoundedQueueKata. Each commit in the history is a single
+step in the kata.
