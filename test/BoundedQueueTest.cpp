@@ -34,3 +34,12 @@ TEST_F(BoundedQueueTest, EnqueueResumesConsumer)
     EXPECT_CALL(consumer, Resume());
     q.enqueue(5);
 }
+
+TEST_F(BoundedQueueTest, FirstInFirstOut)
+{
+    q.enqueue(1);
+    q.enqueue(2);
+
+    ASSERT_EQ(1, q.dequeue());
+}
+
