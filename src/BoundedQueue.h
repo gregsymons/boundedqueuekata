@@ -26,6 +26,10 @@ public:
     { 
        const T& item = q.front();
        q.pop();
+       if (q.size() == 0) 
+       {
+           consumer.Pause();
+       }
        return item;
     } 
 
