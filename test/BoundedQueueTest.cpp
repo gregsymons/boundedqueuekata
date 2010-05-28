@@ -13,7 +13,9 @@ class BoundedQueueTest : public ::testing::Test {
 public:
     MockQueueControl producer;
     MockQueueControl consumer;
-    BoundedQueueTest() : producer(), consumer(), q(producer, consumer) { }
+    
+    static const size_t BOUND = 3;
+    BoundedQueueTest() : producer(), consumer(), q(producer, consumer, BOUND) { }
 
     BoundedQueue<int> q;
 };
@@ -60,3 +62,11 @@ TEST_F(BoundedQueueTest, DequeuePausesConsumerWhenQueueIsEmpty)
     q.dequeue();
 }
 
+TEST_F(BoundedQueueTest, EnqueuePausesProducerWhenQueueIsFull)
+{
+    EXPECT_CALL(producer, Pause());
+    q.enqueue(4);
+    q.enqueue(4);
+    q.enqueue(4);
+    q.enqueue(4);
+}
