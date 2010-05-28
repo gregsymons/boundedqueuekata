@@ -54,10 +54,10 @@ $(BIN_DIR):
 BoundedQueueTest: dirs $(ALL_OBJS)
 	g++ -o $(BIN_DIR)/BoundedQueueTest $(ALL_OBJS) $(CXXFLAGS)
 
-$(MY_OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(MY_OBJS): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(HDRS)
 	g++ -o $@ -c $< $(CXXFLAGS)
 
-$(MY_TESTS): $(BUILD_DIR)/%.o: $(TEST_DIR)/%.cpp
+$(MY_TESTS): $(BUILD_DIR)/%.o: $(TEST_DIR)/%.cpp $(HDRS)
 	g++ -o $@ -c $< $(CXXFLAGS)
 
 $(GMOCK_OBJS): $(BUILD_DIR)/%.o: $(GMOCK_SRC_DIR)/%.cc
