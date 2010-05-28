@@ -51,3 +51,12 @@ TEST_F(BoundedQueueTest, EnqueueResumesConsumerOnFirstItemOnly)
     q.enqueue(5);
 }
 
+TEST_F(BoundedQueueTest, DequeuePausesConsumerWhenQueueIsEmpty)
+{
+    q.enqueue(3);
+    q.enqueue(6);
+    EXPECT_CALL(consumer, Pause());
+    q.dequeue();
+    q.dequeue();
+}
+
