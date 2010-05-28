@@ -4,6 +4,7 @@
 class QueueControl {
 public:
 	virtual ~QueueControl() {}
+    virtual void Resume() = 0;
 };
 
 #endif

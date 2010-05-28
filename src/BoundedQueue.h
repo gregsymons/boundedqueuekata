@@ -6,7 +6,7 @@
 template <typename T>
 class BoundedQueue {
 public:
-
+    BoundedQueue(QueueControl& producer) { };
 };
 
 #endif
