@@ -8,30 +8,29 @@ public:
     MOCK_METHOD0(Pause, void());
 };
 
-/*
+
 class BoundedQueueTest : public ::testing::Test {
 public:
+    MockQueueControl producer;
+    MockQueueControl consumer;
+    BoundedQueueTest() : producer(), consumer(), q(producer, consumer) { }
 
+    BoundedQueue<int> q;
 };
-*/
 
-TEST(BoundedQueueTest, CreateResumesProducer) {
-    MockQueueControl producer, consumer;
+TEST_F(BoundedQueueTest, CreateResumesProducer) {
     EXPECT_CALL(producer, Resume());
     BoundedQueue<int> q(producer, consumer);
 }
 
-TEST(BoundedQueueTest, CreatePausesConsumer)
+TEST_F(BoundedQueueTest, CreatePausesConsumer)
 {
-    MockQueueControl producer, consumer;
     EXPECT_CALL(consumer, Pause());
     BoundedQueue<int> q(producer, consumer);
 }
 
-TEST(BoundedQueueTest, EnqueueResumesConsumer)
+TEST_F(BoundedQueueTest, EnqueueResumesConsumer)
 {
-    MockQueueControl producer, consumer;
-    BoundedQueue<int> q(producer, consumer);
     EXPECT_CALL(consumer, Resume());
     q.enqueue(5);
 }
