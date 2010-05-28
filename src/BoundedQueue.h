@@ -21,7 +21,9 @@ public:
 
     const T& dequeue() 
     { 
-        return q.front();
+       const T& item = q.front();
+       q.pop();
+       return item;
     } 
 
 private:
