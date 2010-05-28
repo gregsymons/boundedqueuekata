@@ -5,6 +5,7 @@
 class MockQueueControl : public QueueControl {
 public:
     MOCK_METHOD0(Resume, void());
+    MOCK_METHOD0(Pause, void());
 };
 
 /*
@@ -15,7 +16,14 @@ public:
 */
 
 TEST(BoundedQueueTest, CreateResumesProducer) {
-    MockQueueControl producer;
+    MockQueueControl producer, consumer;
     EXPECT_CALL(producer, Resume());
-    BoundedQueue<int> q(producer);
+    BoundedQueue<int> q(producer, consumer);
+}
+
+TEST(BoundedQueueTest, CreatePausesConsumer)
+{
+    MockQueueControl producer, consumer;
+    EXPECT_CALL(consumer, Pause());
+    BoundedQueue<int> q(producer, consumer);
 }
