@@ -1,6 +1,7 @@
 #ifndef __bounded_queue_h_
 #define __bounded_queue_h_
 
+#include <queue>
 #include "QueueControl.h"
 
 template <typename T>
@@ -14,11 +15,18 @@ public:
     
     void enqueue(const T& item) 
     { 
+        q.push(item);
         consumer.Resume();
     };
 
+    const T& dequeue() 
+    { 
+        return q.front();
+    } 
+
 private:
     QueueControl& consumer;
+    std::queue<T> q;
 };
 
 #endif
